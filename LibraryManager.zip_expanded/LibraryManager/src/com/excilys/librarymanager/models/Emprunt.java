@@ -8,7 +8,17 @@ public class Emprunt {
 	private Livre livre;
 	private LocalDate dateEmprunt;
 	private LocalDate dateRetour;
-	
+
+/** Constructors*/
+	public Emprunt(int id, Membre membre, Livre livre, LocalDate dateEmprunt, LocalDate dateRetour) {
+		this.id = id;
+		this.membre = membre;
+		this.livre = livre;
+		this.dateEmprunt = dateEmprunt;
+		this.dateRetour = dateRetour;
+	}
+
+/** Methods */
 	public int getId() {
 		return id;
 	}
@@ -42,8 +52,8 @@ public class Emprunt {
 	
 	@Override
 	public String toString() {
-		return "Emprunt [id=" + id + ", membre=" + membre + ", livre=" + livre + ", dateEmprunt=" + dateEmprunt
-				+ ", dateRetour=" + dateRetour + "]";
+		return "Emprunt [id=" + id + ", membre = " + membre.getNom() + " " + membre.getPrenom() +  ", livre = " + livre.getTitre() + " - " + livre.getAuteur() + ", dateEmprunt = " + dateEmprunt
+				+ ", dateRetour = " + dateRetour + "]";
 	 }
 	
 }
