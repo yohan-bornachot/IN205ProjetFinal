@@ -1,4 +1,4 @@
-package com.excilys.librarymanager.models;
+package com.excilys.librarymanager.modele;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,9 @@ public class Emprunt {
 	private LocalDate dateRetour;
 
 /** Constructors*/
+	
+	public Emprunt() {}
+	
 	public Emprunt(int id, Membre membre, Livre livre, LocalDate dateEmprunt, LocalDate dateRetour) {
 		this.id = id;
 		this.membre = membre;

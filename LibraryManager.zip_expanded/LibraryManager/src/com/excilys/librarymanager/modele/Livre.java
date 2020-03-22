@@ -1,4 +1,4 @@
-package com.excilys.librarymanager.models;
+package com.excilys.librarymanager.modele;
 
 public class Livre {
 	private int id;
@@ -7,6 +7,7 @@ public class Livre {
 	private String isbn;
 	
 /**Constructors*/
+	public Livre() {}
 	
 	public Livre(int id, String titre, String auteur, String isbn) {
 		this.id = id;

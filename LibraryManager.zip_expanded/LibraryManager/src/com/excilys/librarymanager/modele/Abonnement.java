@@ -1,4 +1,4 @@
-package com.excilys.librarymanager.models;
+package com.excilys.librarymanager.modele;
 
 import java.util.NoSuchElementException;
 

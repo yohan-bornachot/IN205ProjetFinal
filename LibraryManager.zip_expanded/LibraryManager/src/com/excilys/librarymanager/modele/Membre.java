@@ -1,4 +1,4 @@
-package com.excilys.librarymanager.models;
+package com.excilys.librarymanager.modele;
 
 public class Membre {
 	private int id;
@@ -10,6 +10,8 @@ public class Membre {
 	private Abonnement abonnement;
 
 /** Constructors */
+	public Membre() {}
+	
 	public Membre(int id, String nom, String prenom, String adresse, String email, String telephone, Abonnement abonnement) {
 		this.id = id;
 		this.nom = nom;

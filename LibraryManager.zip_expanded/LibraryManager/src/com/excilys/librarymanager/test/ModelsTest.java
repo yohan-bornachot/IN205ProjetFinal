@@ -1,6 +1,7 @@
-package com.excilys.librarymanager.modeleTest;
-import com.excilys.librarymanager.models.*;
+package com.excilys.librarymanager.test;
 import java.time.LocalDate;
+
+import com.excilys.librarymanager.modele.*;
 
 public class ModelsTest {
 	
