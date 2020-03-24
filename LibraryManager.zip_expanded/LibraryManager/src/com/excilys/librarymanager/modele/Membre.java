@@ -1,6 +1,11 @@
 package com.excilys.librarymanager.modele;
 
 public class Membre {
+	
+	/****************
+	 *  Attributes  *
+	 ****************/
+	
 	private int id;
 	private String nom;
 	private String prenom;
@@ -9,7 +14,11 @@ public class Membre {
 	private String telephone;
 	private Abonnement abonnement;
 
-/** Constructors */
+	
+	/******************
+	 *  Constructors  *
+	 ******************/
+	
 	public Membre() {}
 	
 	public Membre(int id, String nom, String prenom, String adresse, String email, String telephone, Abonnement abonnement) {
@@ -23,8 +32,12 @@ public class Membre {
 	}
 	
 	
-	/** Methods */
+	/*************
+	 *  Methods  *
+	 *************/
 	
+	// --- Getters & Setters ---
+
 	public int getId() {
 		return id;
 	}
@@ -80,11 +93,18 @@ public class Membre {
 	public void setAbonnement(Abonnement abonnement) {
 		this.abonnement = abonnement;
 	}
+	
+	// --- Other methods ---
 
 	@Override
 	public String toString() {
-		return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email
-				+ ", telephone=" + telephone + ", abonnement=" + abonnement + "]";
+		return "Info Membre : |> id : " + id + "\n"
+				+ "              |> nom : " + nom + "\n"
+				+ "              |> prenom : " + prenom + "\n"
+				+ "              |> adresse : " + adresse + "\n"
+				+ "              |> email : " + email + "\n"
+				+ "              |> telephone : " + telephone + "\n"
+				+ "              |> abonnement : " + abonnement + "\n\n";
 	}
 	
 }

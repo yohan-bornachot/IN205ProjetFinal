@@ -2,14 +2,23 @@ package com.excilys.librarymanager.modele;
 
 import java.time.LocalDate;
 
+
 public class Emprunt {
+	
+	/****************
+	 *  Attributes  *
+	 ****************/
+	
 	private int id;
 	private Membre membre;
 	private Livre livre;
 	private LocalDate dateEmprunt;
 	private LocalDate dateRetour;
 
-/** Constructors*/
+	
+	/******************
+	 *  Constructors  *
+	 ******************/
 	
 	public Emprunt() {}
 	
@@ -20,8 +29,14 @@ public class Emprunt {
 		this.dateEmprunt = dateEmprunt;
 		this.dateRetour = dateRetour;
 	}
+	
 
-/** Methods */
+	/*************
+	 *  Methods  *
+	 *************/
+	
+	// --- Getters & Setters ---
+	
 	public int getId() {
 		return id;
 	}
@@ -53,10 +68,15 @@ public class Emprunt {
 		this.dateRetour = dateRetour;
 	}
 	
+	// --- Other methods ---
+	
 	@Override
 	public String toString() {
-		return "Emprunt [id=" + id + ", membre = " + membre.getNom() + " " + membre.getPrenom() +  ", livre = " + livre.getTitre() + " - " + livre.getAuteur() + ", dateEmprunt = " + dateEmprunt
-				+ ", dateRetour = " + dateRetour + "]";
+		return "Info Emprunt : |> id : " + id + "\n"
+	+ "               |> membre : " + membre.getNom() + " " + membre.getPrenom() + "\n"
+	+ "               |> livre : " + livre.getTitre() + " - " + livre.getAuteur() + "\n"
+	+ "               |> date d'emprunt : " + dateEmprunt + "\n"
+	+ "               |> date de retour : " + dateRetour + "\n\n";
 	 }
 	
 }

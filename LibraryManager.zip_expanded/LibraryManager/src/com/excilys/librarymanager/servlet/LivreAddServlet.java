@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,13 +17,21 @@ import com.excilys.librarymanager.service.LivreServiceImpl;
 import com.excilys.librarymanager.service.MembreService;
 import com.excilys.librarymanager.service.MembreServiceImpl;
 
-public class LivreAddServlet {
+public class LivreAddServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		LivreService livreServ = LivreServiceImpl.getInstance();
 		MembreService membreServ = MembreServiceImpl.getInstance();
 		List<Livre> livreDispoList = new ArrayList<Livre>();
 		List<Membre> membreDispoList = new ArrayList<Membre>();
-		
+		try {
+			membreDispoList = membreServ.getListMembreEmpruntPossible();
+			livreDispoList = livreServ.getListDispo();
+			request.setAttribute("membreDispoList", membreDispoList);
+			request.setAttribute("livreDispoList", livreDispoList);
+		}
+		catch(ServiceException e1) {
+			throw new ServletException("Problème lors de la requête doGet de LivreAddServlet");
+		}
 	}
 }

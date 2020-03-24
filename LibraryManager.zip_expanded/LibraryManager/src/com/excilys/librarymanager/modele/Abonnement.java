@@ -11,13 +11,20 @@ public enum Abonnement {
     private int value;
     private String label;
     
-    /** Constructors */
+	/******************
+	 *  Constructors  *
+	 ******************/
+    
     Abonnement(int value, String label) {
         this.value = value;
         this.label = label;
     }
     
-    /** Methods */
+    
+	/*************
+	 *  Methods  *
+	 *************/
+    
     public static Abonnement valueOf(int value) {
         for (Abonnement abonnement : Abonnement.values()) {
             if (abonnement.value == value) {
@@ -29,5 +36,9 @@ public enum Abonnement {
 
     public String toString() {
         return this.label;
+    }
+    
+    public int toInt() {
+    	return this.value;
     }
 }

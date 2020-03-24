@@ -1,12 +1,21 @@
 package com.excilys.librarymanager.modele;
 
 public class Livre {
+	
+	/****************
+	 *  Attributes  *
+	 ****************/
+	
 	private int id;
 	private String titre;
 	private String auteur;
 	private String isbn;
 	
-/**Constructors*/
+	
+	/******************
+	 *  Constructors  *
+	 ******************/
+	
 	public Livre() {}
 	
 	public Livre(int id, String titre, String auteur, String isbn) {
@@ -16,7 +25,13 @@ public class Livre {
 		this.isbn = isbn;
 	}
 	
-/**Methods*/
+
+	/*************
+	 *  Methods  *
+	 *************/
+	
+	// --- Getters & Setters ---
+	
 	public int getId() {
 		return id;
 	}
@@ -42,8 +57,13 @@ public class Livre {
 		this.isbn = isbn;
 	}
 	
+	// --- Other methods ---
+
 	@Override
 	public String toString() {
-		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", isbn=" + isbn + "]";
+		return "Info Livre : |> id : " + id + "\n"
+				+ "             |> titre : " + titre + "\n"
+				+ "             |> auteur : " + auteur + "\n"
+				+ "             |> isbn : " + isbn + "\n\n";
 	}
 }

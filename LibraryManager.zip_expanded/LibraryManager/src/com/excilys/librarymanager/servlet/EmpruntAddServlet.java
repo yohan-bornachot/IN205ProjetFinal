@@ -28,8 +28,8 @@ public class EmpruntAddServlet extends HttpServlet{
 		try {
 			livreDispoList = livreServ.getListDispo();
 			membreDispoList = membreServ.getListMembreEmpruntPossible();
-			request.setAttribute("livres dispo", livreDispoList);
-			request.setAttribute("membres qui peuvent emprunter", membreDispoList);
+			request.setAttribute("livres_dispo", livreDispoList);
+			request.setAttribute("membre_emprunteur", membreDispoList);
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/Emprunt_add.jsp" ).forward( request, response );
 		}
 		catch(ServiceException e1) {
@@ -39,7 +39,11 @@ public class EmpruntAddServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-		if(request.getAttribute("livres dispo", )
+		LivreService livreServ = LivreServiceImpl.getInstance();
+		MembreService membreServ = MembreServiceImpl.getInstance();
+		Membre membre = request.getAttribute("membres_emprunteur");
+		Livre livre = request.getAttribute("livres_dispo");
+		
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/Emprunt_add.jsp" ).forward( request, response );
 	}
 }

@@ -16,6 +16,8 @@ import com.excilys.librarymanager.persistence.ConnectionManager;
 
 public class LivreDaoImpl implements LivreDao{
 	
+	// --- Mise en place du design pattern Singleton ---
+
 	private static LivreDao instance;
 	private LivreDaoImpl() { }	
 	public static LivreDao getInstance() {
@@ -26,12 +28,19 @@ public class LivreDaoImpl implements LivreDao{
 	}
 	
 	
+	// --- RequÃªtes SQL utilisÃ©es ---
+
 	private static final String GET_LIST_QUERY = "SELECT id, titre, auteur, isbn FROM livre;";
 	private static final String GET_BY_ID_QUERY = "SELECT id, titre, auteur, isbn FROM livre WHERE id = ?;";
 	private static final String CREATE_QUERY = "INSERT INTO livre (titre, auteur, isbn) VALUES (?, ?, ?);";
 	private static final String UPDATE_QUERY = "UPDATE livre SET titre = ?, auteur = ?, isbn = ? WHERE id = ?;";
 	private static final String DELETE_QUERY = "DELETE FROM livre WHERE id=?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM livre;";
+	
+	
+	/*************************
+	 *  Methods implemented  *
+	 *************************/
 	
 	@Override
 	public List<Livre> getList() throws DaoException{
@@ -54,8 +63,9 @@ public class LivreDaoImpl implements LivreDao{
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("Problème lors de la récupération de la liste des livres.");
+			throw new DaoException("ProblÃ¨me lors de la rÃ©cupÃ©ration de la liste des livres.");
 		} 
+		System.out.println("GET: Tous les livres");
 		return livreList;
 	}
 	
@@ -76,18 +86,21 @@ public class LivreDaoImpl implements LivreDao{
 				livre.setIsbn(res.getString("isbn"));
 			}
 			
-			System.out.println("GET: " + livre.toString());
+			System.out.println("GET: livre " + livre.getId());
 		} catch (SQLException e) {
-			throw new DaoException("Problème lors de la récupération du livre");
+			throw new DaoException("ProblÃ¨me lors de la rÃ©cupÃ©ration du livre");
 		}
 		return livre;
 	}
+	
+	
 	
 	private ResultSet prepareQueryforGetID(int id, PreparedStatement preparedStatement) throws SQLException {
 		preparedStatement.setInt(1, id);
 		ResultSet res = preparedStatement.executeQuery();
 		return res;
 	}
+	
 	
 	
 	@Override
@@ -103,12 +116,14 @@ public class LivreDaoImpl implements LivreDao{
 				id = res.getInt(1);				
 			}
 
-			System.out.println("CREATE: livre [ id = " +  id + "titre = " + titre + " auteur = " + auteur + "isbn = " + isbn + "].");
+			System.out.println("CREATE: livre " + id);
 		} catch (SQLException e) {
-			throw new DaoException("Problème lors de la création du livre");
+			throw new DaoException("ProblÃ¨me lors de la crÃ©ation du livre");
 		}
 		return id;
 	}
+	
+	
 	
 	private ResultSet prepareQueryforCreate(String titre, String auteur, String isbn,
 			PreparedStatement preparedStatement) throws SQLException {
@@ -119,6 +134,8 @@ public class LivreDaoImpl implements LivreDao{
 		ResultSet res = preparedStatement.getGeneratedKeys();
 		return res;
 	}
+	
+	
 	
 	@Override
 	public void update(Livre livre) throws DaoException {
@@ -134,11 +151,12 @@ public class LivreDaoImpl implements LivreDao{
 			preparedStatement.setInt(4, livre.getId());
 			preparedStatement.executeUpdate();
 
-			System.out.println("UPDATE: " + livre.toString());
+			System.out.println("UPDATE: livre " + livre.getId());
 		} catch (SQLException e) {
-			throw new DaoException("Problème lors de la mise à jour du livre");
+			throw new DaoException("ProblÃ¨me lors de la mise Ã  jour du livre");
 		}
 	}
+	
 	
 	
 	@Override
@@ -151,9 +169,9 @@ public class LivreDaoImpl implements LivreDao{
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 			connection.close();
-			System.out.println("DELETE: " + id);
+			System.out.println("DELETE: livre " + id);
 		} catch (SQLException e) {
-			throw new DaoException("Problème lors de la suppression du livre:" + id );
+			throw new DaoException("ProblÃ¨me lors de la suppression du livre:" + id );
 		}
 	}
 	
@@ -169,11 +187,11 @@ public class LivreDaoImpl implements LivreDao{
 			if(res.next()) {
 				count = res.getInt(1);
 			}
-			System.out.println("COUNT : " + count);
 		} catch (SQLException e) {
-			throw new DaoException("Problème lors du comptage des livres :");
+			throw new DaoException("ProblÃ¨me lors du comptage des livres :");
 		}
+		
+		System.out.println("COUNT : "+ count +" livres");
 		return count;
 	}
-	
 }
