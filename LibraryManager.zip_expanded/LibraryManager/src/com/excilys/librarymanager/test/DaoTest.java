@@ -36,14 +36,14 @@ public class DaoTest {
 		
 		try {
 			printHeader("# # # # # # # # Tests d'impl√©mentation de la dao pour les livres # # # # # # # #");
-			printHeader("Cr√©ation d'un livre");
+			printHeader("CrÈation d'un livre");
 			int idNewLivre = livre.create("Le livre de la jungle", "Rudyard Kipling","111-3141592654");
 			
-			printHeader("R√©cup√©ration d'un livre par son identifiant");
+			printHeader("RÈcupÈration d'un livre par son identifiant");
 			Livre newLivre = livre.getById(idNewLivre);
 			System.out.println(newLivre);
 			
-			printHeader("Mise √  jour d'un livre");
+			printHeader("Mise ‡  jour d'un livre");
 			newLivre.setIsbn("111-1111111111");
 			livre.update(newLivre);
 			
@@ -75,15 +75,15 @@ public class DaoTest {
 		List<Membre> membreList;
 		
 		try {
-			printHeader("# # # # # # # # Tests d'impl√©mentation de la dao pour les membres # # # # # # # #");
-			printHeader("Cr√©ation d'un membre");
-			int idNewMembre = membre.create("Vador","Dark","13 bis rue de l'√âtoile noire","dark.vador@ensta-paris.fr","0101010101",Abonnement.VIP);
+			printHeader("# # # # # # # # Tests d'implÈmentation de la dao pour les membres # # # # # # # #");
+			printHeader("CrÈation d'un membre");
+			int idNewMembre = membre.create("Vador","Dark","13 bis rue de l'Ètoile noire","dark.vador@ensta-paris.fr","0101010101",Abonnement.VIP);
 						
-			printHeader("R√©cup√©ration d'un membre par son identifiant");
+			printHeader("RÈcupÈration d'un membre par son identifiant");
 			Membre newMembre = membre.getById(idNewMembre);
 			System.out.println(newMembre);
 			
-			printHeader("Mise √  jour d'un membre");
+			printHeader("Mise ‡  jour d'un membre");
 			newMembre.setAbonnement(Abonnement.BASIC);
 			membre.update(newMembre);
 			
@@ -113,23 +113,23 @@ public class DaoTest {
 		List<Emprunt> empruntList;
 		
 		try {
-			printHeader("# # # # # # # # Tests d'impl√©mentation de la dao pour les emprunts # # # # # # # #");
+			printHeader("# # # # # # # # Tests d'implÈmentation de la dao pour les emprunts # # # # # # # #");
 
 			printHeader("Comptage du nombre d'emprunts");
 			System.out.println("nombre d'emprunts : " + emprunt.count());
 			
-			printHeader("Cr√©ation d'un emprunt");
-			int idNewEmprunt = emprunt.create(1, 2, LocalDate.of(1998, 11, 13));
+			printHeader("CrÈation d'un emprunt");
+			int idNewEmprunt = emprunt.create(1, 10, LocalDate.of(1998, 11, 13));
 			
-			printHeader("R√©cup√©ration d'un emprunt par son identifiant");
+			printHeader("RÈcupÈration d'un emprunt par son identifiant");
 			Emprunt newEmprunt = emprunt.getById(idNewEmprunt);
 			System.out.println(newEmprunt);
 			
 			printHeader("Comptage du nombre d'emprunts");
 			System.out.println("nombre d'emprunts : " + emprunt.count());
 			
-			printHeader("Mise √  jour d'un emprunt");
-			newEmprunt.setDateRetour(LocalDate.of(2020, 03, 24));
+			printHeader("Mise ‡  jour d'un emprunt");
+			newEmprunt.setDateRetour(LocalDate.now());
 			emprunt.update(newEmprunt);
 			
 			printHeader("Liste de tous les emprunts");
@@ -143,15 +143,16 @@ public class DaoTest {
 			for (int i=0; i<empruntList.size();i++)
 				System.out.println(empruntList.get(i));
 			
-			printHeader("Liste des emprunts pas encore rendus pour un membre donn√©");
+			printHeader("Liste des emprunts pas encore rendus pour un membre donnÈ");
 			empruntList = emprunt.getListCurrentByMembre(4);
 			for (int i=0; i<empruntList.size();i++)
 				System.out.println(empruntList.get(i));
 			
-			printHeader("Liste des emprunts pas encore rendus pour un livre donn√©");
+			printHeader("Liste des emprunts pas encore rendus pour un livre donnÈ");
 			empruntList = emprunt.getListCurrentByLivre(8);
 			for (int i=0; i<empruntList.size();i++)
 				System.out.println(empruntList.get(i));
+			
 
 			
 		} catch (Exception e) {

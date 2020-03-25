@@ -9,6 +9,7 @@ import com.excilys.librarymanager.dao.MembreDaoImpl;
 import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.modele.Membre;
+import com.excilys.librarymanager.modele.Abonnement;
 
 public class MembreServiceImpl implements MembreService {
 	
@@ -72,14 +73,14 @@ public class MembreServiceImpl implements MembreService {
 	}
 	
 	@Override
-	public int create(String nom, String prenom, String adresse, String email, String telephone) throws ServiceException{
+	public int create(String nom, String prenom, String adresse, String email, String telephone, Abonnement abonnement) throws ServiceException{
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		int membre=-1;
 		try {
 			if(nom==null || prenom==null) {
-				throw new ServiceException("Erreur : Nom ou prénom non renseigné.");
+				throw new ServiceException("Erreur : Nom ou prÃ©nom non renseignÃ©.");
 			}
-			membre = membreDao.create(nom.toUpperCase(), prenom, adresse, email, telephone);
+			membre = membreDao.create(nom.toUpperCase(), prenom, adresse, email, telephone, abonnement);
 		}
 		catch(DaoException e1) {
 			System.out.println(e1.getMessage());
@@ -92,7 +93,7 @@ public class MembreServiceImpl implements MembreService {
 		MembreDao membreDao = MembreDaoImpl.getInstance();
 		try {
 			if(membre.getNom()==null || membre.getPrenom()==null) {
-				throw new ServiceException("Erreur : Nom ou prénom non renseigné.");
+				throw new ServiceException("Erreur : Nom ou prÃ©nom non renseignÃ©.");
 			}
 			membre.setNom(membre.getNom().toUpperCase());
 			membreDao.update(membre);

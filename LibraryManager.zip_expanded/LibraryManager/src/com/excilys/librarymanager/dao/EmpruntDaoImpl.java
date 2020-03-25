@@ -163,6 +163,9 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				emprunt.setMembre(membre);
 				emprunt.setLivre(livre);
 				emprunt.setDateEmprunt(res.getDate("dateEmprunt").toLocalDate());
+				// Forcément on a dateRetour == null car l'emprunt n'a pas été rendu. 
+				// Ici dateRetour est initialisé �  null par le constructeur Emprunt().
+			
 				
 				empruntList.add(emprunt);
 				
@@ -209,6 +212,8 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				emprunt.setMembre(membre);
 				emprunt.setLivre(livre);
 				emprunt.setDateEmprunt(res.getDate("dateEmprunt").toLocalDate());
+				// Forcément on a dateRetour == null car l'emprunt n'a pas été rendu. 
+				// Ici dateRetour est initialisé �  null par le constructeur Emprunt().
 				
 				empruntList.add(emprunt);
 			}
@@ -256,6 +261,8 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				emprunt.setMembre(membre);
 				emprunt.setLivre(livre);
 				emprunt.setDateEmprunt(res.getDate("dateEmprunt").toLocalDate());
+				// Forcément on a dateRetour == null car l'emprunt n'a pas été rendu. 
+				// Ici dateRetour est initialisé �  null par le constructeur Emprunt().
 				
 				empruntList.add(emprunt);
 			}
@@ -301,6 +308,12 @@ public class EmpruntDaoImpl implements EmpruntDao{
 				emprunt.setMembre(membre);
 				emprunt.setLivre(livre);
 				emprunt.setDateEmprunt(res.getDate("dateEmprunt").toLocalDate());
+				Date dateRetour = res.getDate("DateRetour");
+				if(dateRetour == null)
+					emprunt.setDateRetour(null);
+				else	
+					emprunt.setDateRetour(res.getDate("dateRetour").toLocalDate());
+
 			}
 			
 			
@@ -353,7 +366,7 @@ public class EmpruntDaoImpl implements EmpruntDao{
 		return res;
 	}
 	
-	
+
 	
 	@Override
 	public void update(Emprunt emprunt) throws DaoException {

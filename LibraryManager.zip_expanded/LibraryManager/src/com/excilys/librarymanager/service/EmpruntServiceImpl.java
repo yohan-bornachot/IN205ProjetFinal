@@ -6,13 +6,10 @@ import java.util.List;
 
 import com.excilys.librarymanager.dao.EmpruntDao;
 import com.excilys.librarymanager.dao.EmpruntDaoImpl;
-import com.excilys.librarymanager.dao.LivreDao;
-import com.excilys.librarymanager.dao.LivreDaoImpl;
 import com.excilys.librarymanager.exception.DaoException;
 import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.modele.Abonnement;
 import com.excilys.librarymanager.modele.Emprunt;
-import com.excilys.librarymanager.modele.Livre;
 import com.excilys.librarymanager.modele.Membre;
 
 public class EmpruntServiceImpl implements EmpruntService{
@@ -92,14 +89,16 @@ public class EmpruntServiceImpl implements EmpruntService{
 	}
 	
 	@Override
-	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws ServiceException{
+	public int create(int idMembre, int idLivre, LocalDate dateEmprunt) throws ServiceException{
+		int id=-1;
 		EmpruntDao empruntDao = EmpruntDaoImpl.getInstance();
 		try {
-			empruntDao.create(idMembre, idLivre, dateEmprunt);
+			id = empruntDao.create(idMembre, idLivre, dateEmprunt);
 		}
 		catch(DaoException e1) {
 			System.out.println(e1.getMessage());
 		}
+		return id;
 	}
 	
 	@Override
@@ -140,7 +139,7 @@ public class EmpruntServiceImpl implements EmpruntService{
 			else return false;
 		}
 		catch(DaoException e1) {
-			throw new ServiceException("Problème lors de la requête 'isLivreDispo' ");
+			throw new ServiceException("ProblÃ¨me lors de la requÃªte 'isLivreDispo' ");
 		}
 	}
 	
@@ -171,7 +170,7 @@ public class EmpruntServiceImpl implements EmpruntService{
 			}
 		}
 		catch(DaoException e1) {
-			throw new ServiceException("Problème lors de la requête 'isEmpruntPossible'");
+			throw new ServiceException("ProblÃ¨me lors de la requÃªte 'isEmpruntPossible'");
 		}
 		return false;
 	}

@@ -77,7 +77,7 @@ public class LivreServiceImpl implements LivreService {
 		int idLivre=-1;
 		try {
 			if(titre==null) {
-				throw new ServiceException("Erreur : Titre du livre non renseigné.");
+				throw new ServiceException("Erreur : Titre du livre non renseignÃ©.");
 			}
 			idLivre = livreDao.create(titre, auteur, isbn);
 		}
@@ -92,7 +92,7 @@ public class LivreServiceImpl implements LivreService {
 		LivreDao livreDao = LivreDaoImpl.getInstance();
 		try {
 			if(livre.getTitre()==null) {
-				throw new ServiceException("Erreur : Titre du livre non renseigné.");
+				throw new ServiceException("Erreur : Titre du livre non renseignÃ©.");
 			}
 			livreDao.update(livre);
 		}

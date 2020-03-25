@@ -72,11 +72,17 @@ public class Emprunt {
 	
 	@Override
 	public String toString() {
+		if (dateRetour == null) {
+			return "Info Emprunt : |> id : " + id + "\n"
+					+ "               |> Membre : " + membre.getNom() + " " + membre.getPrenom() + " [idMembre = " + membre.getId() + "]\n"
+					+ "               |> Livre : " + livre.getTitre() + " - " + livre.getAuteur() + " [idLivre = " + livre.getId() + "]\n"
+					+ "               |> date d'emprunt : " + dateEmprunt + "\n"
+					+ "               |> date de retour : livre pas encore rendu\n\n";
+		}
 		return "Info Emprunt : |> id : " + id + "\n"
-	+ "               |> membre : " + membre.getNom() + " " + membre.getPrenom() + "\n"
-	+ "               |> livre : " + livre.getTitre() + " - " + livre.getAuteur() + "\n"
+	+ "               |> Membre : " + membre.getNom() + " " + membre.getPrenom() + " [idMembre = " + membre.getId() + "]\n"
+	+ "               |> Livre : " + livre.getTitre() + " - " + livre.getAuteur() + " [idLivre = " + livre.getId() + "]\n"
 	+ "               |> date d'emprunt : " + dateEmprunt + "\n"
 	+ "               |> date de retour : " + dateRetour + "\n\n";
 	 }
-	
 }

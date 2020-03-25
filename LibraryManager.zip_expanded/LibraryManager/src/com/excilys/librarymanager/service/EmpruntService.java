@@ -13,7 +13,7 @@ public interface EmpruntService {
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws ServiceException;
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws ServiceException;
 	public Emprunt getById(int id) throws ServiceException;
-	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws ServiceException;
+	public int create(int idMembre, int idLivre, LocalDate dateEmprunt) throws ServiceException;
 	public void returnBook(int id) throws ServiceException;
 	public int count() throws ServiceException;
 	public boolean isLivreDispo(int idLivre) throws ServiceException;

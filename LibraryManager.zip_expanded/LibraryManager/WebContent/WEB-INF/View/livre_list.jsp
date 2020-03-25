@@ -1,4 +1,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page import ="java.util.List" %>
+<%@ page import = "com.excilys.librarymanager.modele.Livre" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +33,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+                    <% List<Livre> listLivre =  (List<Livre>) request.getAttribute("livreList"); %>
+                    <!-- TODO : parcourir la liste des livres et les afficher selon la structure d
                     <tr>
                         <td>Titre du livre</td>
                         <td>Nom de l'auteur</td>
                         <td>ISBN du livre</td>
                         <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
                     </tr>
-                    
                     <!-- TODO : parcourir la liste des livres et les afficher selon la structure d'exemple ci-dessus -->
+                    <c:forEach items ="${livreList}" var="livre">
+						<tr>
+                        <td>${livre.titre}</td>
+                        <td>${livre.auteur}</td>
+                        <td>${livre.isbn}</td>
+                        <td>
+                    </c:forEach>
                 </tbody>
             </table>
           </div>
