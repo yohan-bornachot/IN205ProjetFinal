@@ -1,4 +1,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page import ="java.util.List" %>
+<%@ page import = "com.excilys.librarymanager.modele.Emprunt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody id="results">
-                
+                <%List<Emprunt> empruntList = (List<Emprunt>) request.getAttribute("empruntList"); %>
                     <tr>
                         <td>Titre du livre, <em>de Nom de l'auteur</em></td>
                         <td>Prénom et nom du membre emprunteur</td>

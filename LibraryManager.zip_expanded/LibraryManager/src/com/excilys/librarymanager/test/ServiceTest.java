@@ -10,7 +10,7 @@ public class ServiceTest {
 	
 	public static void main(String[] Args) throws Exception{
 		
-		// ---------- Test impl√©mentation service livre ----------
+		// ---------- Test implÈmentation service livre ----------
 
 		LivreService livre = LivreServiceImpl.getInstance();
 		List<Livre> livreList;
@@ -20,11 +20,11 @@ public class ServiceTest {
 			DaoTest.printHeader("Cr√©ation d'un livre");
 			int idNewLivre = livre.create("Le livre de la jungle", "Rudyard Kipling","111-3141592654");
 			
-			DaoTest.printHeader("R√©cup√©ration d'un livre par son identifiant");
+			DaoTest.printHeader("RÈcupÈration d'un livre par son identifiant");
 			Livre newLivre = livre.getById(idNewLivre);
 			System.out.println(newLivre);
 			
-			DaoTest.printHeader("Mise √  jour d'un livre");
+			DaoTest.printHeader("Mise ‡  jour d'un livre");
 			newLivre.setIsbn("111-1111111111");
 			livre.update(newLivre);
 			
@@ -47,8 +47,8 @@ public class ServiceTest {
 			for (int i=0; i<livreList.size();i++) 
 				System.out.println(livreList.get(i));
 
- 			System.out.println("\nNB : 7 livres sont disponibles.\nDans la BD initiale qui poss√®de 10 livres,\n" + 
-						"3 livres n'ont pas encore √©t√© rendus. √áa para√Æt coh√©rent.");
+ 			System.out.println("\nNB : 7 livres sont disponibles.\nDans la BD initiale qui possËde 10 livres,\n" + 
+						"3 livres n'ont pas encore ÈtÈ rendus. Ca paraÓt cohÈrent.");
 			
 		} catch (Exception e) {
 			System.out.println(e);

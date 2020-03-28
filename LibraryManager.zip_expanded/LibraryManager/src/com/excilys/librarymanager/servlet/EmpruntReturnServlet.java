@@ -1,36 +1,48 @@
 package com.excilys.librarymanager.servlet;
 
+import java.util.*;
 
+import javax.servlet.http.*;
+import javax.servlet.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.excilys.librarymanager.exception.ServiceException;
-import com.excilys.librarymanager.modele.Emprunt;
+import com.excilys.librarymanager.modele.*;
 import com.excilys.librarymanager.service.EmpruntService;
 import com.excilys.librarymanager.service.EmpruntServiceImpl;
 
 public class EmpruntReturnServlet extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		EmpruntService empruntServ = EmpruntServiceImpl.getInstance();
-		List<Emprunt> empruntList = new ArrayList<Emprunt>();
-		try {
-			empruntList = empruntServ.getListCurrent();
-			request.setAttribute("empruntList", empruntList);
-			this.getServletContext().getRequestDispatcher( "/WEB-INF/emprunt_return.jsp" ).forward( request, response );
-		}
-		catch(ServiceException e1) {
-			throw new ServletException("Problème lors de la requête 'doGet' du Servlet : EmpruntListServlet");
-		}
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException {
+        try {
+            EmpruntService empruntService = EmpruntServiceImpl .getInstance();
+            List<Emprunt> listEmprunt=empruntService.getListCurrent();
+
+            request.setAttribute("listEmprunt", listEmprunt);
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/View/emprunt_return.jsp").forward(request, response);
+
+            
+        } catch (Exception e) {
+        	System.out.println(e.getMessage());
+            throw new ServletException();
+        }   
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            doGet(request, response);
+
+            EmpruntService empruntService = EmpruntServiceImpl .getInstance();
+            int id=Integer.valueOf(request.getParameter("id"));
+
+            empruntService.returnBook(id);
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/View/emprunt_list.jsp").forward(request, response);
+            
+        } catch (Exception e) {
+            throw new ServletException();
+        }
+
+        
 	}
 }

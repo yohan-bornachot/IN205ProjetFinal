@@ -5,18 +5,24 @@ import java.util.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
 import java.io.IOException;
-import java.time.LocalDate;
 
 import com.excilys.librarymanager.modele.*;
+import com.excilys.librarymanager.service.EmpruntService;
+import com.excilys.librarymanager.service.EmpruntServiceImpl;
 import com.excilys.librarymanager.service.LivreService;
 import com.excilys.librarymanager.service.LivreServiceImpl;
 
-public class LivreAddServlet extends HttpServlet {
+public class LivreDeleteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException {
         try {
 
-            this.getServletContext().getRequestDispatcher("/WEB-INF/View/livre_add.jsp").forward(request, response);
+            EmpruntService empruntService = EmpruntServiceImpl.getInstance();
+            List<Emprunt> listEmprunt=empruntService.getListCurrent();
+
+            request.setAttribute("listEmprunt", listEmprunt);
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/View/livre_delete.jsp").forward(request, response);
 
             
         } catch (Exception e) {
@@ -30,11 +36,9 @@ public class LivreAddServlet extends HttpServlet {
             doGet(request, response);
 
             LivreService livreService = LivreServiceImpl .getInstance();
-            String titre=request.getParameter("titre");
-            String auteur=request.getParameter("auteur");
-            String isbn=request.getParameter("isbn");
-
-            livreService.create(titre, auteur, isbn);
+            int id=Integer.valueOf(request.getParameter("id"));
+            
+            livreService.delete(id);
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/View/livre_list.jsp").forward(request, response);
             

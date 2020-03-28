@@ -1,4 +1,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page import ="java.util.List"%>
+<%@ page import ="com.excilys.librarymanager.modele.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +32,12 @@
 	            <select id="idLivre" name="idLivre" class="browser-default">
 	              <option value="" disabled selected>-- Livres --</option>
 	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
+	              <% List<Livre> listLivre= (List<Livre>)request.getAttribute("livresDispo"); %>
+                    <%for(Livre livre: listLivre){ %>
+                    <tr>
+                    	<option value=<%=livre.getId()%>>"<%=livre.getTitre() %>", de <%=livre.getAuteur() %></option>
+                    </tr>
+                    <%} %>
                   <option value="idDuLivre">"Titre du livre", de Nom de l'auteur</option>
 	            </select>
 	          </div>
@@ -36,6 +45,12 @@
 	            <select id="idMembre" name="idMembre" class="browser-default">
 	              <option value="" disabled selected>-- Membres --</option>
 	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
+	               <% List<Membre> listMembre= (List<Membre>)request.getAttribute("empruntPossible"); %>
+	               <%for(Membre membre: listMembre){ %>
+                    <tr>
+                    	<option value= <%=membre.getId()%>> <%=membre.getPrenom() %> <%=membre.getNom() %></option>
+                    </tr>
+                    <%} %>
                   <option value="idDuMembre">Prénom et nom du membre</option>
 	            </select>
 	          </div>
