@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/View/emprunt_return.jsp=UTF-8
+encoding//WebContent/WEB-INF/View/livre_delete.jsp=UTF-8
+encoding//WebContent/WEB-INF/View/livre_details.jsp=UTF-8
+encoding//WebContent/WEB-INF/View/membre_details.jsp=UTF-8
 encoding//src/com/excilys/librarymanager/dao/LivreDaoImpl.java=UTF-8
